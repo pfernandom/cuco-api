@@ -1,0 +1,26 @@
+{
+  "name": "char-simulator",
+  "version": "0.0.1",
+  "description": "An application to simulate a set of characters",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "lint": "eslint --fix . && echo 'Lint complete.'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongo": "^0.1.0",
+    "nodemon": "^1.19.1",
+    "restify": "^8.3.3",
+    "restify-cors-middleware": "^1.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "^1.18.2"
+  }
+}
