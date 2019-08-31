@@ -1,12 +1,14 @@
 {
-  "name": "char-simulator",
+  "name": "cuco-api",
   "version": "0.0.1",
   "description": "An application to simulate a set of characters",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
     "lint": "eslint --fix . && echo 'Lint complete.'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --write \"**/*.{js,ts}\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "npm run lint && npm run format"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +24,12 @@
     "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "^6.1.0",
     "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^3.0.4",
     "prettier": "^1.18.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit"
+    }
   }
 }

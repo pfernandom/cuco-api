@@ -26,6 +26,7 @@ async function main({ url }) {
   server.pre(cors.preflight);
   server.use(cors.actual);
   server.use(restify.plugins.bodyParser());
+  server.use(restify.plugins.queryParser());
 
   const health = (req, res, next) => {
     res.send({
@@ -49,7 +50,15 @@ async function main({ url }) {
 
   server.get("/appointment", async (req, res, next) => {
     const appointments = await appmtTable.findAll();
-    res.send(appointments);
+    const usedIds = appointments.map(({ patientId }) => patientId);
+    const patients = await patientTable.findAll({
+      _id: { $in: usedIds }
+    });
+    console.log({ patients });
+
+    res.send(
+      appointments.map((a, index) => ({ patient: patients[index], ...a }))
+    );
     next();
   });
   server.post("/appointment", async (req, res, next) => {
